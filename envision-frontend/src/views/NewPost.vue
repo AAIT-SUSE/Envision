@@ -25,6 +25,7 @@
 
 <script>
   import envisionEditor from '@/components/TextEditorFull'
+  import axios from 'axios'
 
   export default {
     components: {

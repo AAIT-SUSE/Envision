@@ -67,11 +67,12 @@
           
 <script>
 import envisionEditor from '@/components/TextEditorFull'
+import axios from 'axios'
   export default {
     components:{
       envisionEditor
     },
-     
+
     data () {
       return {
         select: ['C语言学习', 'Programming'],
@@ -82,8 +83,24 @@ import envisionEditor from '@/components/TextEditorFull'
           'C语言学习'
         ], 
         tags: [],
-        dialog:false,  
-       
+        dialog:false, 
+        
+        methods:{
+          AddlistGet: function() {
+            let self = this;
+            axios.get('http://127.0.0.1:8000/api/LearningTaskViewSet/')
+            .then(function(response) {
+              console.log(response)
+            self.items=response.data;
+            })
+            .catch(function(error) {
+              console.log(error)
+            })
+          },
+          mounted() {
+            this.AddlistGet();
+          }
+        }
       }
     }
   }

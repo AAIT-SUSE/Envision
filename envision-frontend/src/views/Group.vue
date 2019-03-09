@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     data: () => ({
       groupName: 'C语言学习交流',

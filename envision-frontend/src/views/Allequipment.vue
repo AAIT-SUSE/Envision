@@ -35,6 +35,7 @@
 
 <script>
 import Registration from '@/components/Registration' 
+import axios from 'axios'
   export default {
     components: {
     Registration

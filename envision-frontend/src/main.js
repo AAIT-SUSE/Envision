@@ -4,11 +4,11 @@ import App from './App.vue'
 import router from './plugins/router'
 import './plugins/editor'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 
+//全局注册
 Vue.config.productionTip = false;
-Vue.prototype.axios = axios;
-Vue.use(VueAxios, axios);
+Vue.prototype.$axios = axios;
+Vue.use(axios);
 
 new Vue({
   router,

@@ -62,8 +62,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 
-import globalData from '../plugins/GlobalData';
+//import globalData from '../plugins/GlobalData';
 
 export default {
   data() {

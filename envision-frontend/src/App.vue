@@ -2,7 +2,7 @@
   <v-app>
     <app-toolbar></app-toolbar>
     <app-side-menu></app-side-menu>
-
+    
     <v-content style="padding-right: 300px;">
       <v-container fluid>
         <v-layout>
@@ -21,6 +21,8 @@
 import AppToolbar from './components/AppToolbar'
 import AppSideMenu from './components/AppSideMenu'
 import AppRightSidePanel from './components/AppRightSidePanel'
+//import Assignment from './componments/Assignment' 
+//import Addlist from './componments/Addlist'
 import axios from 'axios'
 
 export default {
@@ -36,13 +38,13 @@ export default {
     }
   },
   mounted() {
-    // axios.get('http://127.0.0.1:8000/index/')
-    // .then(function(response) {
-    //   console.log(response)
-    // })
-    // .catch(function(error) {
-    //   console.log(error)
-    // })
+    axios.get('http://127.0.0.1:8000/api/SectionViewSet/')
+    .then(function(response) {
+      console.log(response)
+    })
+    .catch(function(error) {
+      console.log(error)
+    })
   },
 }
 </script>

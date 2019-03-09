@@ -69,6 +69,7 @@
 
 <script>
 import Addlist from '@/components/Addlist'
+import axios from 'axios'
 export default {
     components: {
     Addlist
@@ -76,7 +77,23 @@ export default {
  data: () => ({
     items: [
       '学习清单', '学习目标'
-    ]
+    ],
+     methods:{
+          AddlistGet: function() {
+            let self = this;
+            axios.get('http://127.0.0.1:8000/api/LearningTaskViewSet/')
+            .then(function(response) {
+              console.log(response)
+            self.items=response.data;
+            })
+            .catch(function(error) {
+              console.log(error)
+            })
+          },
+          mounted() {
+            this.AddlistGet();
+          }
+        }
   }),
 }
 </script>

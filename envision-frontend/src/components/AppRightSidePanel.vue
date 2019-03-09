@@ -48,6 +48,7 @@
 
 <script>
   import unityBg from '../assets/unity_bg.jpg'
+  import axios from 'axios'
 
   export default {
     data: () => ({

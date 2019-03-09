@@ -7,6 +7,7 @@
 
 <script>
   import hljs from 'highlight.js'
+  import axios from 'axios'
 
   export default {
     data:() => ({

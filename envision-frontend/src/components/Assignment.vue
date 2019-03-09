@@ -38,7 +38,7 @@
 <script>
 import Allequipment from '@/views/Allequipment.vue';
 import Loanrecord from '@/views/Loanrecord.vue';
-
+import axios from 'axios'
   export default {
   components:{
     Allequipment,
