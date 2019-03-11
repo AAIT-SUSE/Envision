@@ -24,7 +24,7 @@ const newQuestion = () => import('@/views/NewQuestion');
 const person = () => import('@/views/Person');
 const personArticleList = () => import('@/components/PersonArticleList');
 const personAttention = () => import('@/components/PersonAttention');
-const personPostList = () => import('@/components/PersonPostList');
+// const personPostList = () => import('@/components/PersonPostList');
 const personQuestions = () => import('@/components/PersonQuestions');
 const personStudy = () => import('@/components/PersonStudy');
 const postlist = () => import('@/views/PostList');
@@ -32,9 +32,13 @@ const postdetail = () => import('@/views/PostDetail');
 const question = () => import('@/views/QuestionDetail');
 const questions = () => import('@/views/Questions');
 const shoppingdetail = () => import('@/views/ShoppingDetail');
-//const home = () => import('@/views/Home');
+const home = () => import('@/views/Home');
 
 const routes = [
+  {
+    path: '/',
+    component: home
+  },
   {
     path: '/group',
     component: group,
@@ -98,32 +102,32 @@ const routes = [
     path: '/forum',
     component: forum
   },
-  {
-    path: '/person',
-    component: person,
-    children: [
-      {
-        path: 'articlelist',
-        component: personArticleList
-      },
-      {
-        path: 'attention',
-        component: personAttention
-      },
-      {
-        path: 'postlist',
-        component: personPostList
-      },
-      {
-        path: 'questions',
-        component: personQuestions
-      },
-      {
-        path: 'study',
-        component: personStudy
-      }
-    ]
-  },
+  // {
+  //   path: '/person',
+  //   component: person,
+  //   children: [
+  //     {
+  //       path: 'articlelist',
+  //       component: personArticleList
+  //     },
+  //     {
+  //       path: 'attention',
+  //       component: personAttention
+  //     },
+  //     {
+  //       path: 'postlist',
+  //       component: personPostList
+  //     },
+  //     {
+  //       path: 'questions',
+  //       component: personQuestions
+  //     },
+  //     {
+  //       path: 'study',
+  //       component: personStudy
+  //     }
+  //   ]
+  // },
   {
     path: '/announmentcelists',
     component: announcementlist
