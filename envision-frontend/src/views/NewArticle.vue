@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="display-1">创建文章<span class="font-weight-thin"> New Article</span></p>
-    <v-text-field label="填写文章标题:"></v-text-field>
+    <v-text-field label="填写文章标题:" v-model="articleTitle"></v-text-field>
     <v-combobox
       color="success"
       flat
@@ -23,7 +23,10 @@
         </v-chip>
       </template>
     </v-combobox>
-    <envision-editor class="mt-4"></envision-editor>
+    <div class="envision-editor">
+      <quill-editor ref="myTextEditor" v-model="editorContent" :options="editorOption" >
+    </quill-editor>
+  </div>
     <v-layout row wrap>
       <v-flex class="px-4">
         <v-btn block>保存为草稿</v-btn>
@@ -46,15 +49,33 @@
     },
     data: () => ({
       tags: [],
+      articleTitle: '',
+      editorContent: '',
+      editorOption: {
+        placeholder: '在这里输入文字...',
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            [{ 'header': [1, 2, 3, 4, false] }],
+            [{ 'font': ['默认', 'monospace'] }],
+            [{ 'color': [] }],
+            [{ 'align': [] }],
+            ['link', 'image']
+          ],
+        }
+      }
     }),
     methods: {
       NewArticle: function() {
         let self = this;
         let myDate = new Date();
-        axios.post('http://127.0.0.1:8000/api/ArticleCommentViewSet/', {
+        axios.post('http://127.0.0.1:8000/api/ArticleViewSet/', {
           'author_id': storage.state.uid,
           'create_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
-          'tag': self.tags,
+          'tag': self.tags.join(),
           'topic': self.articleTitle,
           'content': self.editorContent,
         }).

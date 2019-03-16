@@ -50,7 +50,7 @@
 
           <v-list-tile-content>
             <v-list-tile-title>{{ username }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ userDescription }}</v-list-tile-sub-title>
+            <v-list-tile-sub-title>{{ userdescription }}</v-list-tile-sub-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile
@@ -67,8 +67,30 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-      
-  </v-toolbar>
+    <v-tooltip bottom v-if="isUserLogged == true">
+      <v-btn icon to="" slot="activator" @click="dialog = true">
+        <v-icon>exit_to_app</v-icon>
+      </v-btn>
+      <span>注销</span>
+    </v-tooltip>
+    <v-dialog v-model="dialog" max-width="300">
+      <v-card>
+        <v-card-title class="headline">确认注销？</v-card-title>
+        <v-card-text>
+          注销后，你将结束当前会话。同时，Envision 将会要求你重新登录。
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" @click="dialog = false">
+            取消
+          </v-btn>
+          <v-btn color="error darken-1" @click="dialog = false; Logout();">
+            确认
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-toolbar> 
 </template>
 
 <script>
@@ -81,13 +103,13 @@ export default {
     avatarHash: String
   },
   data: () => ({
-    userDescription: '2015级自动化3班',
+    userdescription: '2015级自动化3班',
+    dialog: false,
     menuItems: [
       { title: '个人中心', icon: 'person', link: '/user/new' },
       { title: '我的草稿', icon: 'subject' , link: '/home/new' },
       { title: '关注内容', icon: 'stars' , link: '/giftshop/new'},
       { title: '系统设置', icon: 'settings' , link: '/explore/new'},
-      { title: '退出登录', icon: 'exit_to_app' , link: '/home/new'},
     ],
     createItems: [
       { title:'新文章', link: '/articles/new' },
@@ -95,7 +117,13 @@ export default {
       { title: '新问题', link: '/questions/new' },
       { title: '从草稿创建', link: '/draft' }
     ]
-  })
+  }),
+  methods: {
+    Logout: function() {
+      window.localStorage.clear();
+      router.go(0);
+    }
+  }
 }
 </script>
 
