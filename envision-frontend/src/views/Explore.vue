@@ -11,7 +11,6 @@
               solo-inverted
             ></v-text-field>
             <v-tabs slot="extension" left color="transparent" slider-color="red">
-              <v-tab to="/explore/dynamic">动态</v-tab>
               <v-tab to="/explore/articlelist">文章</v-tab>
               <v-tab to="/explore/questionslist">直答</v-tab>
             </v-tabs>            

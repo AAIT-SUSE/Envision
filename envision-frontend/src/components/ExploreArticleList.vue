@@ -35,7 +35,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      articles:[]
+      articles:[
+      ]
     }
   },
   methods: {
