@@ -11,7 +11,6 @@ const announcementdetail = () => import('@/views/AnnouncementDetail');
 const articleDetail = () => import('@/views/ArticleDetail');
 const explore = () => import('@/views/Explore');
 const exploreArticleList = () => import('@/components/ExploreArticleList');
-const exploreDynamic = () => import('@/components/ExploreDynamic');
 const exploreQuestionsList = () => import('@/views/Questions');
 const forum = () => import('@/views/Forum');
 const giftshop = () => import('@/views/GiftShop');
@@ -60,10 +59,6 @@ const routes = [
       {
         path: 'articlelist',
         component: exploreArticleList
-      },
-      {
-        path: 'dynamic',
-        component: exploreDynamic
       },
       {
         path: 'questionslist',

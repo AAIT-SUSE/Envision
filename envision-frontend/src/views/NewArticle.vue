@@ -25,8 +25,8 @@
     </v-combobox>
     <div class="envision-editor">
       <quill-editor ref="myTextEditor" v-model="editorContent" :options="editorOption" >
-    </quill-editor>
-  </div>
+      </quill-editor>
+    </div>
     <v-layout row wrap>
       <v-flex class="px-4">
         <v-btn block>保存为草稿</v-btn>
