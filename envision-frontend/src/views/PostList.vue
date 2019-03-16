@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>
-      <v-btn icon :to="'/forum/new'">
+      <v-btn icon :to="'/forum'">
         <v-icon>keyboard_arrow_left</v-icon>
       </v-btn>
       返回论坛首页

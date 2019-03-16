@@ -15,7 +15,7 @@
             <v-list-tile
                         v-for="item in items"
                         :key="item"
-                        @click=""
+                        @click=";"
             >
               <v-list-tile-title v-text="item"></v-list-tile-title>
             </v-list-tile>

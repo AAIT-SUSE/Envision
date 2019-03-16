@@ -1,6 +1,6 @@
 <template>
   <div class="envision-editor">
-    <quill-editor ref="myTextEditor" v-model="content" :options="editorOption">
+    <quill-editor ref="myTextEditor" :content="editorContent" :options="editorOption" >
     </quill-editor>
   </div>
 </template>
@@ -9,8 +9,11 @@
   import hljs from 'highlight.js'
 
   export default {
+    props: {
+      editorContent: String,
+    },
     data:() => ({
-      content: '',
+      editorContent: '',
       editorOption: {
         placeholder: '在这里输入文字...',
         modules: {
@@ -27,7 +30,12 @@
           ],
         }
       }
-    })
+    }),
+    // methods: {
+    //   ChangedEditorContent: function() {
+    //     this.$emit('editorContent',editorContent);
+    //   }
+    // }
   }
 </script>
 

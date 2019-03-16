@@ -6,20 +6,17 @@
       :avatarHash='"https://api.adorable.io/avatars/165/" + userAvatar'
     ></app-toolbar>
     <app-side-menu :isUserLogged=isUserLogged></app-side-menu>
-
     <v-dialog v-model="loginDialog" max-width="450" dark>
       <v-card>
         <v-card-title class="headline">{{ loginWindowTitle }}</v-card-title>
-
         <v-card-text>{{ loginWindowText }} </v-card-text>
-
         <v-card-text>
           <v-layout row wrap>
             <v-flex xs12>
               <v-text-field
                 label="用户名"
                 color="amber"
-                :value="inputUsername"
+                v-model="inputUsername"
                 :hint="hintUsername"
               ></v-text-field>
             </v-flex>
@@ -28,7 +25,7 @@
                 v-if="loginWindowTitle=='注册 Envision'"
                 label="邮箱"
                 color="amber"
-                :value="inputEmail"
+                v-model="inputEmail"
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
@@ -37,8 +34,9 @@
                 :type="passwordInputType"
                 :append-icon="showPassword ? 'visibility' : 'visibility_off'"
                 @click:append="TogglePasswordVisibility"
-                :value="inputPassword"
+                v-model="inputPassword"
                 color="amber"
+                :hint="hintPassword"
               ></v-text-field>
             </v-flex>
             <v-flex xs6 v-if="loginWindowTitle=='注册 Envision'">
@@ -89,21 +87,34 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="dialogLoginFailure" max-width="290">
+    <v-dialog v-model="dialogLoginFailure" max-width="390">
       <v-card>
         <v-card-title class="headline">用户名或密码错误</v-card-title>
         <v-card-text>
-          用户名或密码错误，登录未能成功。
+          <p>请检查并重新输入你的用户名和密码。用户名即为您注册时使用的邮箱。</p>
+          <p>忘记了密码？你可以点击这里进行<a href="#">重新设置</a>。</p>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-2" @click="dialogLoginFailure = false">
+            好
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="dialogRegFailure" max-width="290">
+    <v-dialog v-model="dialogRegFailure" max-width="390">
       <v-card>
         <v-card-title class="headline">用户名或邮箱已被注册</v-card-title>
         <v-card-text>
-          您填写的用户名或者邮箱已经被注册过，注册未能成功。
+          <p>您填写的用户名或者邮箱已经被注册过，注册未能成功。请重新注册。</p>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-2" @click="dialogRegFailure = false">
+            好
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
 
@@ -149,6 +160,7 @@ export default {
       loginWindowBtnRight: "登录",
       loginWindowText: "在不登录Envision的情况下，您只能访问有限的内容。登录 Envision 来让我们更好的为你服务。",
       hintUsername: "",
+      hintPassword: "",
       inputUsername: "",
       inputPassword: "",
       inputEmail: "",
@@ -169,16 +181,13 @@ export default {
       this.isUserLogged = false;
     }
   },
-  computed: {
-    GenerateHash: function() {
-      this.randomHash = Math.random().toString(30).substr(2);
-    },
-  },
   methods: {
     ShowLoginDialog: function() {
       this.loginDialog = true;
     },
-
+    GenerateHash: function() {
+      this.randomHash = Math.random().toString(30).substr(2);
+    },
     TogglePasswordVisibility: function() {
       if(this.passwordInputType === "password") {
         this.passwordInputType = "text";
@@ -217,10 +226,10 @@ export default {
       }
     },
     Login: function() {
-      let self = this;
+      let self = this; 
       axios.post('http://127.0.0.1:8000/login/', {
         "email_or_username": self.inputUsername,
-        "password": self.inputPassword
+        "password": self.inputPassword,
       })
       .then(function (response) {
         console.log(response);
@@ -232,7 +241,7 @@ export default {
           router.go('/');
         } else {
           // name or password wrong
-          this.dialogLoginFailure = true;
+          self.dialogLoginFailure = true;
         }
       })
       .catch(function (error) {
@@ -244,7 +253,8 @@ export default {
       axios.post('http://127.0.0.1:8000/register/', {
         "username": self.inputUsername,
         "e_mail": self.inputEmail,
-        "password": self.inputPassword
+        "password":self.inputPassword,
+        "user_logo": self.randomHash,
       })
       .then(function (response) {
         console.log(response);
@@ -256,7 +266,7 @@ export default {
           router.go('/');
         } else {
           // name or email has already been registered
-          this.dialogRegFailure = true;
+          self.dialogRegFailure = true;
         }
       })
       .catch(function (error) {

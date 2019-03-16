@@ -19,7 +19,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn disabled flat color="grey" class="mx-2">
-          <span >阅读量：</span>
+          <span ></span>
           <span class="font-weight-bold mx-2">{{ vote }}</span>
         </v-btn>
       </v-card-actions>

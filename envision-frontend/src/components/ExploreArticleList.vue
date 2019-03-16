@@ -17,7 +17,8 @@
           <v-spacer></v-spacer>
           <v-tooltip bottom>
             <v-btn icon flat slot="activator" color="grey">
-              <v-icon>favorite</v-icon>{{ article.applaud }}
+              <v-icon>favorite</v-icon>
+              <!-- {{ article.applaud }} -->
             </v-btn>
             <span>“赞同”功能暂未上线，正在完善之中</span>
           </v-tooltip>

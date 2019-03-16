@@ -75,7 +75,7 @@ export default {
   //   PersonPostListGet: function() {
   //     let self = this;
   //     let pid = storage.state.uid;
-  //     axios.get('http://127.0.0.1:8000/api/PostViewSet/?author_id=pid'
+  //     axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostViewSet/?author_id=pid`
   //     ).
   //     then(function(response) {
   //       console.log(response.data)
