@@ -6,7 +6,8 @@ Vue.use(Vuex);
 const storage = new Vuex.Store({
   state: {
 		uid: "",
-		username: ""
+		username: "",
+		avatar: "",
 	},
 	mutations: {
 		setUserId (state, value) {
@@ -14,6 +15,9 @@ const storage = new Vuex.Store({
 		},
 		setUsername (state, value) {
 			state.username = value;
+		},
+		setUserAvatar (state, value) {
+			state.avatar = value;
 		}
 	}
 });
