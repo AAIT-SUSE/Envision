@@ -11,7 +11,7 @@
         <v-list-tile-content style="font-size:20px">
           <v-list-tile-title>{{ topic }}</v-list-tile-title>
           <v-list-tile-sub-title class="grey--text" style="font-size:10px">
-            {{ start_time }}
+            {{ create_time }}
           </v-list-tile-sub-title>
         </v-list-tile-content>
       </v-card-title>
@@ -33,7 +33,7 @@ import axios from 'axios'
   export default {
     data: () => ({
       topic: '',
-      start_time: '',
+      create_time: '',
       vote: 46,
       content: '',
     }),

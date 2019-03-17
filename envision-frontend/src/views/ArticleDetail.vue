@@ -47,7 +47,8 @@ export default {
         self.time = response.data.create_time;
       })
       .catch(function(error) {
-        alert('获取文章出现错误。请将以下内容发送给 @蔡仲晨 进行分析：\n' + error);
+        console.log(erro);
+        
       });
     }
   },

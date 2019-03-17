@@ -3,21 +3,22 @@
     <p class="display-1">创建主题帖<span class="font-weight-thin"> New Post</span></p>
     <v-layout wrap row>
       <v-flex class="px-4" xs6>
-        <v-text-field label="填写帖子主题:"></v-text-field>
+        <v-text-field label="填写帖子主题:" v-model="topic"></v-text-field>
       </v-flex>
       <v-flex class="px-4" xs6>
-        <v-select :items="sectionSelect" label="选择发布版块:"></v-select>
+        <v-select :items="sectionSelects" v-model="vid" label="选择发布版块:"></v-select>
       </v-flex>
     </v-layout>
-
-
-    <envision-editor class="mt-4"></envision-editor>
+    <div class="envision-editor">
+      <quill-editor ref="myTextEditor" v-model="editorContent">
+      </quill-editor>
+    </div>
     <v-layout row wrap>
       <v-flex class="px-4">
         <v-btn block>保存为草稿</v-btn>
       </v-flex>
       <v-flex class="px-4">
-        <v-btn color="info" block>发表主题</v-btn>
+        <v-btn color="info" block @click="NewPost">发表主题</v-btn>
       </v-flex>
     </v-layout>
   </div>
@@ -33,17 +34,25 @@
       envisionEditor
     },
     data: () => ({
-      sectionSelect: ['嵌入式技术交流区', '软件技术交流区', '机器人技术交流区', '生活轶事交流区']
+      editorContent: '',
+      topic: '',
+      vid: null,
+      sectionSelects: [
+        {value: 0, text: '嵌入式技术交流区'},
+        {value: 1, text: '软件技术交流区'},
+        {value: 2, text: '机器人技术交流区'},
+        {value: 3, text: '生活轶事交流区'},
+       ],
     }),
     methods: {
       NewPost: function() {
         let self = this;
         let myDate = new Date();
-        axios.post('http://127.0.0.1:8000/api/ArticleCommentViewSet/', {
+        axios.post('http://127.0.0.1:8000/api/PostVieweSet/', {
           'author_id': storage.state.uid,
           'create_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
-          'section_id': null,//根据分区名找
-          'topic': self.articleTitle,
+          'section_id': self.vid,
+          'topic': self.topic,
           'content': self.editorContent,
         }).
         then(function(response){
