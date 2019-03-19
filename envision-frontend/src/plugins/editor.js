@@ -4,6 +4,7 @@ import 'quill/dist/quill.core.css'
 import '../assets/envision-editor.css'
 
 vue.use(envisionEditor, {
+	placeholder: '在这里输入文字...',
   modules: {
 		toolbar: [
 			['bold', 'italic', 'underline', 'strike'],

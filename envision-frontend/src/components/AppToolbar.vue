@@ -98,32 +98,16 @@ export default {
   props: {
     isUserLogged: Boolean,
     ShowLoginDialog: Function,
+    userId: String,
     username: String,
     userDescription: String,
-    avatarHash: String
+    avatarHash: String,
+    menuItems: Array,
+    createItems: Array,
   },
   data: () => ({
-    userdescription: '2015级自动化3班',
     dialog: false,
-    menuItems: [
-      { title: '个人中心', icon: 'person', link: '/user/new' },
-      { title: '我的草稿', icon: 'subject' , link: '/home/new' },
-      { title: '关注内容', icon: 'stars' , link: '/giftshop/new'},
-      { title: '系统设置', icon: 'settings' , link: '/explore/new'},
-    ],
-    createItems: [
-      { title:'新文章', link: '/articles/new' },
-      { title: '新帖子', link: '/posts/new' },
-      { title: '新问题', link: '/questions/new' },
-      { title: '从草稿创建', link: '/draft' }
-    ]
   }),
-  methods: {
-    Logout: function() {
-      window.localStorage.clear();
-      router.go(0);
-    }
-  }
 }
 </script>
 
