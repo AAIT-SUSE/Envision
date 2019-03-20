@@ -20,10 +20,7 @@ const groupMemberList = () => import('@/components/GroupMemberList');
 const newArticle =() => import('@/views/NewArticle');
 const newPost = () => import('@/views/NewPost');
 const newQuestion = () => import('@/views/NewQuestion');
-const assignment = () => import('@/components/Assignment');
-const school = () => import('@/components/School');
-const addlist = () => import('@/components/Addlist');
-const registration = () => import('@/components/Registration');
+
 //const person = () => import('@/views/Person');
 //const personArticleList = () => import('@/components/PersonArticleList');
 //const personAttention = () => import('@/components/PersonAttention');
@@ -158,23 +155,8 @@ const routes = [
   {
     path: '/shoppingdetail',
     component: shoppingdetail
-  },
-  {
-    path: '/allequipment/new',
-    component: assignment
-  },
-  {
-    path: '/todolist/new',
-    component: school 
-  },
-  {
-    path: '/texteditor/new',
-    component: addlist 
-  },
-  {
-    path: '/borrowed/new',
-    component: registration
   }
+  
 ];
 
 const router = new VueRouter({
