@@ -26,6 +26,10 @@ const personAttention = () => import('@/components/PersonAttention');
 const personPostList = () => import('@/components/PersonPostList');
 const personQuestions = () => import('@/components/PersonQuestions');
 const personStudy = () => import('@/components/PersonStudy');
+const assignment = () => import('@/components/Assignment');
+const school = () => import('@/components/School');
+const addlist = () => import('@/components/Addlist');
+const registration = () => import('@/components/Registration');
 const postlist = () => import('@/views/PostList');
 const postdetail = () => import('@/views/PostDetail');
 const question = () => import('@/views/QuestionDetail');
@@ -35,7 +39,7 @@ const home = () => import('@/views/Home');
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     component: home
   },
   {
@@ -154,7 +158,27 @@ const routes = [
   {
     path: '/shoppingdetail',
     component: shoppingdetail
+  },
+  
+  
+  {
+    path: '/allequipment/new',
+    component: assignment
+  },
+  {
+    path: '/todolist/new',
+    component: school 
+  },
+  {
+    path: '/texteditor/new',
+    component: addlist 
+  },
+  {
+    path: '/borrowed/new',
+    component: registration
   }
+  
+  
 ];
 
 const router = new VueRouter({

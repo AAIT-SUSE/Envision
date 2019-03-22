@@ -175,10 +175,15 @@
       toolbarAvatar: "error",
       toolbarId: "0",
       userMenuItems: [
-
+        {icon: "face", title: "个人中心"},
+        {icon: "bookmark", title: "我的关注"},
+        {icon: "settings", title: "个人设置"},
       ],
       createMenuItems: [
-
+        {title: "创建新文章", link: "/articles/new"},
+        {title: "发表新帖子", link: "/posts/new"},
+        {title: "提出新问题", link: "/questions/new"},
+        {title: "从草稿创建...", link: "/draft"},
       ],
 
       //Login Window and bind members
@@ -312,6 +317,7 @@
         this.toolbarUsername = user;
         this.toolbarAvatar = avatar;
         this.toolbarId = id;
+        this.toolbarDescription = "Envision 用户";
 
         this.isUserLogged = true;
       } else {
