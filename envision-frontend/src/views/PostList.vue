@@ -44,7 +44,7 @@ export default {
       PostListGet: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/PostVieweSet/?seaction_id=${aid}/'
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostVieweSet/?seaction_id=${aid}/`
       ).
       then(function(response) {
         console.log(response)

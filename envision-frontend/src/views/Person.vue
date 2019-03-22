@@ -11,7 +11,7 @@
         ">
           <v-flex xs3>
             <v-img
-              :src='userAvatar'
+              :src="'https://api.adorable.io/avatars/165/' + userAvatar"
               height="125px"
               contain
               style="border-radius:10%"
@@ -21,10 +21,6 @@
             <v-card-title primary-title class="white--text">
               <div>
                 <div class="headline">{{ username }}
-                  <v-btn icon @click="mini = !mini">
-                    <v-icon color="white" v-if="mini">chevron_left</v-icon>
-                    <v-icon color="white" v-if="!mini">chevron_right</v-icon>
-                  </v-btn>  
                 </div>
                 <div>
                   <v-icon></v-icon>
@@ -96,25 +92,32 @@ export default {
 
   data() {
     return {
-      mini: false,
-      username: 'Owen Tsai',
+      username: '',
       userCredits: '666',
-      userSignature: 'Envision 项目发起人',
-      userAvatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+      userSignature: '',
+      userAvatar: '',
       tab: null,
-      items:[
-        {
-          time: "2019/1/1",
-          assignment: "掌握c语言函数",
-        },
-        {
-          time: "2019/1/2",
-          assignment: "掌握c语言指针" 
-        }
-      ],
     }
   },
   methods: {
+    GetPersonInfo:function() {
+      let self = this;
+      let pid = storage.state.uid;
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${pid}`
+      )
+      .then(function (response) {
+        console.log(response);
+        self.username = response.data.results.username;
+        self.userSignature = response.data.results.user_description;
+        self.userAvatar = response.data.results.user_logo;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted() {
+    this.GetPersonInfo();
   }
 }
 </script>

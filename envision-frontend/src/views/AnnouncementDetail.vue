@@ -41,7 +41,7 @@ import axios from 'axios'
       AnnoucementDetailGet: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/AnnouncementViewSet/${aid}/'
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/AnnouncementViewSet/${aid}/`
       ).
       then(function(response) {
         console.log(response)

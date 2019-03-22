@@ -39,7 +39,8 @@ export default {
     GetArticleContent: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/ArticleViewSet/${aid}/')
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/ArticleViewSet/${aid}/`
+      )
       .then(function(response) {
         self.content = response.data.content;
         self.author = response.data.anthor_name;

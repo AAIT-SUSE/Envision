@@ -56,7 +56,7 @@
       NewArticle: function() {
         let self = this;
         let myDate = new Date();
-        axios.post('http://127.0.0.1:8000/api/ArticleViewSet/', {
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/ArticleViewSet/`, {
           'author_id': storage.state.uid,
           'create_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
           'tag': self.tags.join(),

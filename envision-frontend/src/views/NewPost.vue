@@ -48,7 +48,7 @@
       NewPost: function() {
         let self = this;
         let myDate = new Date();
-        axios.post('http://127.0.0.1:8000/api/PostVieweSet/', {
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostVieweSet/`, {
           'author_id': storage.state.uid,
           'create_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
           'section_id': self.vid,

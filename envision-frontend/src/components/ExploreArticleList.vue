@@ -42,11 +42,11 @@ export default {
   methods: {
     ArticleListGet: function() {
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/ArticleViewSet/'
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/ArticleViewSet/`
       ).
       then(function(response) {
         console.log(response)
-        self.articles=response.data;
+        self.articles = response.data;
       }).
       catch(function(error) {
         console.log(error);

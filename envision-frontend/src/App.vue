@@ -245,7 +245,7 @@
         let password = this.inputPassword;
         let self = this;
 
-        axios.post('http://127.0.0.1:8000/login/', {
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/login/`, {
           'email_or_username': username,
           'password': password
         }).then(function (response) {
@@ -254,7 +254,7 @@
             window.localStorage.setItem('envision_token', response.data.token);
             let uid = response.data.id;
             //Send request to get user info
-            axios.get(`http://127.0.0.1:8000/api/UserViewSet/${uid}`).then(function (response) {
+            axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${uid}`).then(function (response) {
               window.localStorage.setItem('envision_uid', uid);
               window.localStorage.setItem('envision_user', response.data.username);
               window.localStorage.setItem('envision_avatar', response.data.user_logo);
@@ -273,7 +273,7 @@
         let avatar = this.randomHash;
         let self = this;
 
-        axios.post('http://127.0.0.1:8000/login/', {
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/login/`, {
           'username': username,
           'e_mail': email,
           'password': password,
@@ -282,7 +282,7 @@
           if(response.data.msg === 'Succeeded') {
             let uid = response.data.id;
             //Send request to get user info
-            axios.get(`http://127.0.0.1:8000/api/UserViewSet/${uid}`).then(function (response) {
+            axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${uid}`).then(function (response) {
               window.localStorage.setItem('envision_uid', uid);
               window.localStorage.setItem('envision_user', response.data.username);
               window.localStorage.setItem('envision_avatar', response.data.user_logo);

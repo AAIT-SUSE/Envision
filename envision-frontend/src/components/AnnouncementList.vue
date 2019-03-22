@@ -41,7 +41,7 @@ export default {
   methods:{
       AnnoucementListGet: function() {
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/AnnouncementViewSet/?ordering=-create_time'
+      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/AnnouncementViewSet/?ordering=-create_time`
       ).
       then(function(response) {
         console.log(response)

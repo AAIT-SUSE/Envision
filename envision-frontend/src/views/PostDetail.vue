@@ -94,7 +94,7 @@
       PostDetailGet: function() {
         let aid = this.$route.params.id;
         let self = this;
-        axios.get('http://127.0.0.1:8000/api/UserViewSet/${aid}/'
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${aid}/`
         ).
         then(function(response) {
           console.log(response)
@@ -103,7 +103,7 @@
         catch(function(error) {
           console.log(error);
         });
-        axios.get('http://127.0.0.1:8000/api/PostVieweSet/${aid}/'
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostVieweSet/${aid}/`
         ).
         then(function(response) {
           console.log(response)
@@ -115,7 +115,7 @@
         catch(function(error) {
           console.log(error);
         });
-        axios.get('http://127.0.0.1:8000/api/PostCommentVieweSet/'
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostCommentVieweSet/`
         ).
         then(function(response) {
           console.log(response)
@@ -127,7 +127,7 @@
         catch(function(error) {
           console.log(error);
         });
-        axios.get('http://127.0.0.1:8000/api/SectionViewSet/${self.section_id}'
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/SectionViewSet/${self.section_id}`
         ).
         then(function(response) {
           console.log(response)
@@ -136,7 +136,7 @@
         catch(function(error) {
           console.log(error);
         });
-        axios.get('http://127.0.0.1:8000/api/UserViewSet/?username=${self.answers.responder}'
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/?username=${self.answers.responder}`
         ).
         then(function(response) {
           console.log(response)
@@ -150,7 +150,7 @@
         let self = this;
         let aid = this.$route.params.id;
         let myDate = new Date();
-        axios.post('http://127.0.0.1:8000/api/PostCommentViewSet/', {
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostCommentViewSet/`, {
           'post_id': aid,
           'author_id': Storage.state.uid,
           'article_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
