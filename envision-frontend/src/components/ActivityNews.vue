@@ -41,7 +41,7 @@ export default {
   methods:{
       ActivityNewsListGet: function() {
       let self = this;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/GroupActivityViewSet/?ordering=-start_time`
+      axios.get('http://127.0.0.1:8000/api/GroupActivityViewSet/?ordering=-start_time'
       ).
       then(function(response) {
         console.log(response)

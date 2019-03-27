@@ -13,8 +13,9 @@
             <v-img
               :src="'https://api.adorable.io/avatars/165/' + userAvatar"
               height="125px"
+              width="125px"
               contain
-              style="border-radius:10%"
+              style="margin-left:60px;border-radius:100%"
             ></v-img>
           </v-flex>
           <v-flex xs9>
@@ -87,6 +88,7 @@
 </template>
 
 <script>
+  import storage from '@/plugins/storage';
 
 export default {
 
@@ -94,7 +96,7 @@ export default {
     return {
       username: '',
       userCredits: '666',
-      userSignature: '',
+      userSignature: 'Envision 组员',
       userAvatar: '',
       tab: null,
     }
@@ -102,14 +104,14 @@ export default {
   methods: {
     GetPersonInfo:function() {
       let self = this;
+      self.username = storage.state.username;
+      self.userAvatar = storage.state.avatar;
       let pid = storage.state.uid;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${pid}`
+      axios.get(`http://127.0.0.1:8000/api/UserViewSet/${pid}`
       )
       .then(function (response) {
         console.log(response);
-        self.username = response.data.results.username;
         self.userSignature = response.data.results.user_description;
-        self.userAvatar = response.data.results.user_logo;
       })
       .catch(function (error) {
         console.log(error);

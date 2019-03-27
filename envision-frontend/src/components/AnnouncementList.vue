@@ -12,7 +12,7 @@
       </v-subheader>
       <v-list two-line>
         <div v-for="(item, index) in items" :key="index">
-          <v-list-tile avatar ripple :to="/announcementdetail/ +item.annoucement_id">
+          <v-list-tile avatar ripple :to="/announcementdetail/ +item.announcement_id">
             <v-list-tile-content>
               <v-list-tile-title>{{ item.topic }}</v-list-tile-title>    
             </v-list-tile-content>
@@ -41,11 +41,10 @@ export default {
   methods:{
       AnnoucementListGet: function() {
       let self = this;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/AnnouncementViewSet/?ordering=-create_time`
+      axios.get('http://127.0.0.1:8000/api/AnnouncementViewSet/?ordering=-create_time'
       ).
       then(function(response) {
-        console.log(response)
-        self.items=response.data;
+        self.items=response.data.results;
       }).
       catch(function(error) {
         console.log(error);

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="article-list">
-      <v-card v-for="item in items" :key="item.id" :to="item.link" class="mb-2">
-        <v-card-title primary-title class="article-title">
-          <div style="font-size:10px">{{ item.partition }} &nbsp;|&nbsp;{{ item.create_time }}</div>
+    <div class="post-list">
+      <v-card v-for="item in items" :key="item" :to="item.link" class="mb-2">
+        <v-card-title primary-title class="post-title">
+          <div style="font-size:10px">{{ item.theme }} &nbsp;|&nbsp;{{ item.create_time }}</div>
         </v-card-title>
         <v-card-text v-html="item.content">
         </v-card-text>
@@ -30,29 +30,24 @@ export default {
     PersonPostListGet: function() {
       let self = this;
       let pid = storage.state.uid;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostVieweSet/?author_id=${pid}`
+      axios.get(`http://127.0.0.1:8000/api/PostVieweSet/?ordering=-create_time&author_id=${pid}`
       ).
-      then(function(response) {
-        console.log(response.data)
+      then(function(response) {      
         self.items=response.data.results;
-        self.PersonSectionGet();
+        for(let i=0 ; i<self.items.length ; i++) {
+          axios.get(`http://127.0.0.1:8000/api/SectionViewSet/${self.items[i].section_id}/`
+          ).
+          then(function(response) {
+            self.items[i].theme = response.data.theme;
+          }).
+          catch(function(error) {
+            console.log(error);
+          });
+        }      
       }).
       catch(function(error) {
         console.log(error);
       });
-    },
-    PersonSectionGet: function() {
-      let self = this;
-      for(i=0 ; i<self.items.length ; i++) {
-        axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/SectionViewSet/${self.items[i].section_id}`
-        ).
-        then(function(response) {
-          self.items[i].partition = response.data.results[0].theme;
-        }).
-        catch(function(error) {
-          console.log(error);
-        });
-      }
     }
   },
   mounted() {

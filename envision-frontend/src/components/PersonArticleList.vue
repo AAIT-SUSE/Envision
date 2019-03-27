@@ -39,11 +39,10 @@ export default {
     PersonArticleListGet: function() {
       let self = this;
       let pid = storage.state.uid;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/ArticleViewSet/?author_id=pid`
+      axios.get(`http://127.0.0.1:8000/api/ArticleViewSet/?ordering=-create_time&author_id=${pid}`
       ).
       then(function(response) {
-        console.log(response.data)
-        self.articles=response.data;
+        self.articles = response.data.results;
       }).
       catch(function(error) {
         console.log(error);

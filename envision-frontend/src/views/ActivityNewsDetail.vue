@@ -4,7 +4,7 @@
       <v-btn icon :to="'/activitynews/new'">
         <v-icon>keyboard_arrow_left</v-icon>
       </v-btn>
-      返回帖子列表
+      返回活动与新闻列表
     </span>
     <v-card class="mb-3">
       <v-card-title primary-title>   
@@ -41,7 +41,7 @@ import axios from 'axios'
       AnnoucementDetailGet: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/GroupActivityViewSet/${aid}`
+      axios.get('htt://127.0.0.1:8000/api/GroupActivityViewSet/${aid}'
       ).
       then(function(response) {
         console.log(response)

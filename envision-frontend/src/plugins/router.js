@@ -39,7 +39,7 @@ const home = () => import('@/views/Home');
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     component: home
   },
   {

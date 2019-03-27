@@ -38,17 +38,17 @@
       topic: '',
       vid: null,
       sectionSelects: [
-        {value: 0, text: '嵌入式技术交流区'},
-        {value: 1, text: '软件技术交流区'},
-        {value: 2, text: '机器人技术交流区'},
-        {value: 3, text: '生活轶事交流区'},
+        {value: 1, text: '嵌入式技术交流区'},
+        {value: 2, text: '软件技术交流区'},
+        {value: 3, text: '机器人技术交流区'},
+        {value: 4, text: '生活轶事交流区'},
        ],
     }),
     methods: {
       NewPost: function() {
         let self = this;
         let myDate = new Date();
-        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/PostVieweSet/`, {
+        axios.post('http://127.0.0.1:8000/api/PostVieweSet/', {
           'author_id': storage.state.uid,
           'create_time': myDate.toLocaleString('chinese', {hour12: false}).replace(/\//g,"-"),
           'section_id': self.vid,

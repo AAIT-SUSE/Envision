@@ -154,12 +154,9 @@
   import AppToolBar from './components/AppToolbar'
   import AppSideMenu from './components/AppSideMenu'
   import AppRightPanel from './components/AppRightSidePanel'
-
   import axios from 'axios'
   import storage from './plugins/storage'
   import router from './plugins/router'
-
-
   export default {
     components: {
       AppToolBar,
@@ -168,7 +165,6 @@
     },
     data: () => ({
       isUserLogged: false,
-
       //For toolbar elements to display correctly
       toolbarUsername: "error",
       toolbarDescription: "error",
@@ -185,7 +181,6 @@
         {title: "提出新问题", link: "/questions/new"},
         {title: "从草稿创建...", link: "/draft"},
       ],
-
       //Login Window and bind members
       loginWindow: false,
       inputUsername: "",
@@ -195,7 +190,6 @@
       showPassword: false,
       step: 1,
       randomHash: "",
-
       //Message dialog
       messageWindow: false,
       messageWindowTitle: '',
@@ -243,14 +237,12 @@
           this.Register();
         }
       },
-
       //Login
       Login: function() {
         let username = this.inputUsername;
         let password = this.inputPassword;
         let self = this;
-
-        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/login/`, {
+        axios.post('http://127.0.0.1:8000/login/', {
           'email_or_username': username,
           'password': password
         }).then(function (response) {
@@ -259,13 +251,15 @@
             window.localStorage.setItem('envision_token', response.data.token);
             let uid = response.data.id;
             //Send request to get user info
-            axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${uid}`).then(function (response) {
+            axios.get(`http://127.0.0.1:8000/api/UserViewSet/${uid}`).then(function (response) {
               window.localStorage.setItem('envision_uid', uid);
               window.localStorage.setItem('envision_user', response.data.username);
               window.localStorage.setItem('envision_avatar', response.data.user_logo);
             });
             //Refresh Page
             router.go('/');
+           console.log(storage.state.uid);
+           self.CheckLoginStatus();
           }
         }).catch(function () {
           self.PopWindow('登录失败', '这个错误可能是由于你填写了错误的用户名或者密码导致的，请检查用户名或密码的正确性。');
@@ -277,8 +271,7 @@
         let email = this.inputEmail;
         let avatar = this.randomHash;
         let self = this;
-
-        axios.post(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/login/`, {
+        axios.post('http://127.0.0.1:8000/register/', {
           'username': username,
           'e_mail': email,
           'password': password,
@@ -287,12 +280,11 @@
           if(response.data.msg === 'Succeeded') {
             let uid = response.data.id;
             //Send request to get user info
-            axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/UserViewSet/${uid}`).then(function (response) {
+            axios.get(`http://127.0.0.1:8000/api/UserViewSet/${uid}`).then(function (response) {
               window.localStorage.setItem('envision_uid', uid);
               window.localStorage.setItem('envision_user', response.data.username);
               window.localStorage.setItem('envision_avatar', response.data.user_logo);
             });
-
             //Refresh Page
             router.go('/');
           }
@@ -302,7 +294,6 @@
       }
     },
     mounted () {
-
       if(this.CheckLoginStatus()) {
         //TODO: Send token to verify
         //Get personal info from localStorage
@@ -318,12 +309,10 @@
         this.toolbarAvatar = avatar;
         this.toolbarId = id;
         this.toolbarDescription = "Envision 用户";
-
         this.isUserLogged = true;
       } else {
         this.GenerateRandomHash();
       }
-
     },
     computed: {
       currentTitle () {
