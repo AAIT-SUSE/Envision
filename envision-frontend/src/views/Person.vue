@@ -11,20 +11,17 @@
         ">
           <v-flex xs3>
             <v-img
-              :src='userAvatar'
+              :src="'https://api.adorable.io/avatars/165/' + userAvatar"
               height="125px"
+              width="125px"
               contain
-              style="border-radius:10%"
+              style="margin-left:60px;border-radius:100%"
             ></v-img>
           </v-flex>
           <v-flex xs9>
             <v-card-title primary-title class="white--text">
               <div>
                 <div class="headline">{{ username }}
-                  <v-btn icon @click="mini = !mini">
-                    <v-icon color="white" v-if="mini">chevron_left</v-icon>
-                    <v-icon color="white" v-if="!mini">chevron_right</v-icon>
-                  </v-btn>  
                 </div>
                 <div>
                   <v-icon></v-icon>
@@ -91,30 +88,38 @@
 </template>
 
 <script>
+  import storage from '@/plugins/storage';
 
 export default {
 
   data() {
     return {
-      mini: false,
-      username: 'Owen Tsai',
+      username: '',
       userCredits: '666',
-      userSignature: 'Envision 项目发起人',
-      userAvatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+      userSignature: 'Envision 组员',
+      userAvatar: '',
       tab: null,
-      items:[
-        {
-          time: "2019/1/1",
-          assignment: "掌握c语言函数",
-        },
-        {
-          time: "2019/1/2",
-          assignment: "掌握c语言指针" 
-        }
-      ],
     }
   },
   methods: {
+    GetPersonInfo:function() {
+      let self = this;
+      self.username = storage.state.username;
+      self.userAvatar = storage.state.avatar;
+      let pid = storage.state.uid;
+      axios.get(`http://127.0.0.1:8000/api/UserViewSet/${pid}`
+      )
+      .then(function (response) {
+        console.log(response);
+        self.userSignature = response.data.results.user_description;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted() {
+    this.GetPersonInfo();
   }
 }
 </script>

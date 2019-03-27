@@ -1,10 +1,10 @@
 <template>
   <div>
     <span>
-      <v-btn icon :to="'/announmentceDetails/new'">
+      <v-btn icon :to="'/announmentcelists'">
         <v-icon>keyboard_arrow_left</v-icon>
       </v-btn>
-      返回帖子列表
+      返回公告列表
     </span>
     <v-card class="mb-3">
       <v-card-title primary-title>   
@@ -41,10 +41,9 @@ import axios from 'axios'
       AnnoucementDetailGet: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/AnnouncementViewSet/${aid}/'
+      axios.get(`http://127.0.0.1:8000/api/AnnouncementViewSet/${aid}`
       ).
       then(function(response) {
-        console.log(response)
         self.content = response.data.content;
         self.topic = response.data.topic;
         self.create_time = response.data.create_time;

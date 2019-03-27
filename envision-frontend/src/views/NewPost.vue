@@ -38,10 +38,10 @@
       topic: '',
       vid: null,
       sectionSelects: [
-        {value: 0, text: '嵌入式技术交流区'},
-        {value: 1, text: '软件技术交流区'},
-        {value: 2, text: '机器人技术交流区'},
-        {value: 3, text: '生活轶事交流区'},
+        {value: 1, text: '嵌入式技术交流区'},
+        {value: 2, text: '软件技术交流区'},
+        {value: 3, text: '机器人技术交流区'},
+        {value: 4, text: '生活轶事交流区'},
        ],
     }),
     methods: {

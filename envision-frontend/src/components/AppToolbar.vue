@@ -75,7 +75,7 @@
 
     <v-dialog v-model="dialog" max-width="300px" dark>
       <v-card>
-        <v-card-title>注销</v-card-title>、
+        <v-card-title>注销</v-card-title>
         <v-card-text>注销登录后，你将退出当前登录的账号，并返回首页。同时 Envision 会要求你重新登录。请确认注销：</v-card-text>
         <v-card-actions>
           <v-btn flat color="pink" @click="dialog = false">取消</v-btn>

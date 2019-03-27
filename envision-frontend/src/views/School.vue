@@ -81,7 +81,8 @@ export default {
      methods:{
           AddlistGet: function() {
             let self = this;
-            axios.get('http://127.0.0.1:8000/api/LearningTaskViewSet/')
+            axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.aait-suse.cn/api/LearningTaskViewSet/`
+            )
             .then(function(response) {
               console.log(response)
             self.items=response.data;

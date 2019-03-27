@@ -35,6 +35,15 @@
         <v-btn color="info" block @click="NewArticle()">发表文章</v-btn>
       </v-flex>
     </v-layout>
+    <v-dialog v-model="dialog" max-width="300px" dark>
+      <v-card>
+        <v-card-text>发布成功，请点击确认返回。</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn flat color="green" @click="dialog = false">确认</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -49,6 +58,7 @@
     },
     data: () => ({
       tags: [],
+      dialog: false,
       articleTitle: '',
       editorContent: '',
     }),
@@ -64,6 +74,7 @@
           'content': self.editorContent,
         }).
         then(function(response){
+          self.dialog = true;
         }).
         catch(function(error) {
           console.log(error);

@@ -1,11 +1,5 @@
 <template>
   <div>
-    <span>
-      <v-btn icon :to="'/explore/articlelist'">
-        <v-icon>keyboard_arrow_left</v-icon>
-      </v-btn>
-      返回文章列表
-    </span>
     <v-layout row wrap>
       <v-flex>
         <v-card>
@@ -39,16 +33,23 @@ export default {
     GetArticleContent: function() {
       let aid = this.$route.params.id;
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/ArticleViewSet/${aid}/')
+      axios.get(`http://127.0.0.1:8000/api/ArticleViewSet/${aid}/`
+      )
       .then(function(response) {
         self.content = response.data.content;
-        self.author = response.data.anthor_name;
         self.title = response.data.topic;
         self.time = response.data.create_time;
+        axios.get(`http://127.0.0.1:8000/api/UserViewSet/${response.data.author_id}`
+        ).
+        then(function(response) {
+          self.author = response.data.username;
+        }).
+        catch(function(error) {
+          console.log(error);
+        });
       })
       .catch(function(error) {
-        console.log(erro);
-        
+        console.log(erro);      
       });
     }
   },

@@ -6,7 +6,7 @@
           <div>
             <h3 class="headline mb-0">{{ article.topic }}</h3>
             <div>作者 | 
-              {{ article.author_id }}
+              {{ article.author_name }}
             </div>
             <div>
             {{article.create_time}}
@@ -42,15 +42,29 @@ export default {
   methods: {
     ArticleListGet: function() {
       let self = this;
-      axios.get('http://127.0.0.1:8000/api/ArticleViewSet/'
+      axios.get('http://127.0.0.1:8000/api/ArticleViewSet/?ordering=-create_time'
       ).
       then(function(response) {
-        console.log(response)
-        self.articles=response.data;
+        
+        self.articles = response.data.results;
+        self.ArticleNameGet();
       }).
       catch(function(error) {
         console.log(error);
       });
+    },
+    ArticleNameGet: function() {
+      let self = this;
+      for(let i=0; i<self.articles.length; i++) {
+        axios.get(`http://127.0.0.1:8000/api/UserViewSet/${self.articles[i].author_id}`
+        ).
+        then(function(response) {
+          self.articles[i].author_name = response.data.username;
+        }).
+        catch(function(error) {
+          console.log(error);
+        });
+      }
     }
   },
   mounted() {
