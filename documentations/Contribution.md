@@ -1,6 +1,6 @@
 <h1 align=center>Envision Contribution Guide</h1>
 <p align=center>
-<img src="https://img.shields.io/badge/version-1.0.0a-red.svg"> <img src="https://img.shields.io/badge/founder-Owen%20Tsai-orange.svg"> <img src="https://img.shields.io/badge/%E5%9B%9B%E5%B7%9D%E8%BD%BB%E5%8C%96%E5%B7%A5-AAIT-brightgreen.svg"> <img src="https://img.shields.io/badge/status-ReBuild%20in%20Progress-blue.svg">
+<img src="https://img.shields.io/badge/version-2.0.0a-red.svg"> <img src="https://img.shields.io/badge/founder-Owen%20Tsai-orange.svg"> <img src="https://img.shields.io/badge/%E5%9B%9B%E5%B7%9D%E8%BD%BB%E5%8C%96%E5%B7%A5-AAIT-brightgreen.svg"> <img src="https://img.shields.io/badge/status-Working%20in%20Progress-blue.svg">
 </p>
   
 <p align=center><b> - 任何参与 Envision 开发的贡献者均应参考本手册 - </b></p>
@@ -18,7 +18,7 @@
 
 ### 1.1 技术贡献
 
-Envision 客户端采用 [**vue.js**](https://cn.vuejs.org/index.html) 作为框架，采用 [**Vuetify**](https://vuetifyjs.com/zh-Hans/) 作为UI组件库。如果你熟悉或者想要使用`vue.js`进行Web应用的开发，你可以考虑参与到 Envision 前端的开发进程中。查看 [【2.1 前端开发】](#2.1-前端开发)以了解前端开发代码规范和开发环境的部署。
+Envision 客户端采用 [**vue.js**](https://cn.vuejs.org/index.html) 作为框架，采用 [**Element**](https://element.eleme.cn/#/zh-CN) 作为UI组件库。如果你熟悉或者想要使用`vue.js`进行Web应用的开发，你可以考虑参与到 Envision 前端的开发进程中。查看 [【2.1 前端开发】](#2.1-前端开发)以了解前端开发代码规范和开发环境的部署。
 
 Envision 服务端采用基于 Python 的轻量级框架 [**Django**](https://www.djangoproject.com/)，同时基于[**Django REST framework**](https://www.django-rest-framework.org/) 构建API。如果你使用Python编程，并且熟悉或者想要使用`Django`框架进行前后端分离的Web应用开发，那么你可以考虑参与到 Envision 后端的开发进程中。查看 [【2.2 后端开发】](#2.2-后端开发)以了解后端开发代码规范和开发环境的部署。
 
@@ -124,7 +124,7 @@ python manage.py runserver
 
 - Python 类与类之间空 2 行。
 - Python 文件结尾空 1 行。
-- ...[*邓总补充* ]
+- ...[*待补充* ]
 
 ### 3 Issue Tracker 的使用规范
 
@@ -135,5 +135,5 @@ python manage.py runserver
 - 当你想要提出 Issue 时，请在标题中大致描述问题。形如“求救！”，“看一下这里是不是有BUG”之类的标题不符合我们的规范，我们将保留删除 Issue 的权利。
 - 不要在一个 Issue 中提出两个不相关的话题。相反，开启两个不同的 Issue 分别阐述两个话题会更好。
 - 在同一个话题内的讨论不应当偏移到另外一个话题。当你在讨论中想要指代或引用另外一个 Issue 的时候，你可以使用 Github 的引用功能。
-- 单纯的类似于“赞”，“+1”之类的回复将会被删除。请不姚发送这些回复。你可以使用 Github 的表情回应功能进行点赞或者点踩等操作。
+- 单纯的类似于“赞”，“+1”之类的回复将会被删除。请不要发送这些回复。你可以使用 Github 的表情回应功能进行点赞或者点踩等操作。
 
